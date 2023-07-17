@@ -1,0 +1,9 @@
+name: kopernikus-test
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - numpy
+  - tqdm
+  - opencv
+  - imutils

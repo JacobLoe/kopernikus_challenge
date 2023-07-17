@@ -1,0 +1,26 @@
+create the conda environment
+'''
+conda env create -f environment.yml
+conda activate kopernikus-test
+'''
+
+Different resolutions and their counts.
+(1080, 1920) and (1520, 2688) are counted multiple times.
+One image is broken (can be opened by cv but not by os and contains no resolution), one image has a useless small resolution.
+
+'''
+0 (1520, 2688, 3)
+1 (480, 640, 3)
+115 (1520, 2688, 3)
+126 (1080, 1920, 3)
+548 ()
+549 (1080, 1920, 3)
+565 (6, 10, 3)
+566 (1080, 1920, 3)
+580 (619, 1100, 3)
+581 (1080, 1920, 3)
+587 (675, 1200, 3)
+588 (1080, 1920, 3)
+'''
+
+
