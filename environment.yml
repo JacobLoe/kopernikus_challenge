@@ -1,4 +1,4 @@
-name: kopernikus-test
+name: kopernikus-challenge
 channels:
   - conda-forge
 dependencies:
