@@ -1,3 +1,5 @@
+Iterates through a directory with images and removes duplicates.
+
 ## create the conda environment
 
 ```
