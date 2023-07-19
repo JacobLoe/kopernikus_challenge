@@ -8,6 +8,7 @@ conda activate kopernikus-challenge
 ```
 
 ## Run the code
+The dataset is assumed to be in '../dataset-candidates-ml/dataset'
 
 ```
 python main.py
