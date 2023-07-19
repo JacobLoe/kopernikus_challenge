@@ -1,0 +1,27 @@
+My program first groups all images of the same camera and of the same resolution together, as the "compare_frames_change_detection" function does not work with images of different size and because I assume images from different cameras produce are oriented to different spots and comparing them would be useless.
+One could resize/crop the images to have the same aspect ratio, but I don't know whether that would change the scores of the function in an unwanted way.
+Leaving the images as is seems to be the safer way.
+The grouping is done by creating a dictionary with the different resolutions as keys and the corresponding images (their file names) as keys.
+
+In the second part the program goes through the images in each resolution group.
+First is checked whether the resolution of a group is useful. If the resolution is () something is wrong with the image and it is not useful.
+The same is true when the resolution is to small to produce a informative image (like (10,10) for example).
+To check for this the height and width of an image is multiplied. If this is smaller than some threshold (in the program 10000), the image is discarded.
+For the dataset this is sufficient, as the smallest useful image has a resolution of (460,640).
+
+Then the each image in a resolution group is compared against every other image (except itself).
+If the score resulting from a comparison equals 0, the path to the image in the inner loop is added to a list.
+As the threshold for min_contout_area 1000 was chosen. After the change in score for a small number of images (changing from very similar to completly different) had been tested.
+All images that were similar had a score close to that, different images had scores starting from 60k. Raising the threshold should be possible, but because of the small sample size of the test might lead to errors.
+
+Before the images in the list are deleted, any duplicates in the list are removed by converting it temporarily into a set.
+
+I don't have any suggestions on how to improve the data collection of unique cases. In no project I worked on so far I had to collect the data myself.
+Because of that I'm also not quite sure what is meant with that the question. I assume the question is meant to be interpreted as how to increase the quantity of images with new/previously unseen situations (different cars, pedestrians, lighting, etc.).
+Following that I would first try to get either images from different cameras, moving cameras or move the existing ones to new spots (if that is possible). 
+That dataset contains only images from four cameras with a fixed target. This limits the amount of situations the cameras can observe severely.
+
+
+The program is very slow (the time complexity for each group is O(n²), where n is the number of images in the group) and most likely not the ideal way of comparing the images.
+Maybe one could use the timestamps to only compare images with a certain distance to each other instead of every image to each other and then remove everything inbetween if the two images are similar enough.
+This would only work if the distance is not to big, as at some point time spans become big enough that significant things could happen in them.
