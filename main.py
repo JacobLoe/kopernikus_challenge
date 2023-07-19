@@ -10,9 +10,9 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='Remove duplicate (or similar) images from a folder')
     parser.add_argument('--min_contour_area', type=int, default=1000,
-                        help='input directory')
+                        help='')
     parser.add_argument('--pixel_threshold', type=int, default=10e5,
-                        help='input directory')
+                        help='Controls the minimum size a image needs to have to not be considered for comparison')
 
     args = parser.parse_args()
 
@@ -58,10 +58,6 @@ if __name__ == "__main__":
                 for image in images_dict[camera_id][resolution_key]:
                     pictures_to_remove.append(image)
 
-            # if resolution_key == (1080, 1920, 3):
-            #     print(resolution_key)
-            #     continue
-
             # check whether there are enough images to compare with
             if len(images_dict[camera_id][resolution_key]) > 1:
                 for i, im_path0 in tqdm(enumerate(images_dict[camera_id][resolution_key]), leave=False):
@@ -94,6 +90,5 @@ if __name__ == "__main__":
         os.mkdir(path_to_unwanted)
 
     for image in tqdm(pictures_to_remove):
-        os.rename(image, os.path.join(path_to_unwanted, os.path.basename(image)))
 
-        # os.remove(image)
+        os.remove(image)
